@@ -89,7 +89,7 @@ contract Tra is Ownable {
         uint256 token_amount = 0;
         require(shipments[shipment_cid].recipient == msg.sender, "This account is not buyer.");
         token_amount = shipments[shipment_cid].price1 * shipments[shipment_cid].quantity1 + shipments[shipment_cid].price2 * shipments[shipment_cid].quantity2;  
-        sendToken(msg.sender, address(this), token_amount);
+        // sendToken(msg.sender, address(this), token_amount);
         shipments[shipment_cid].receiver_sign = true;
         purchase_list[purchase_id] = shipment_cid;
         purchase_id ++;
@@ -106,7 +106,7 @@ contract Tra is Ownable {
             emit Log("The receiver did not sign.");
         } else {
             token_amount = shipments[shipment_cid].price1 * shipments[shipment_cid].quantity1 + shipments[shipment_cid].price2 * shipments[shipment_cid].quantity2;  
-            require(usdc.transfer(msg.sender, token_amount));
+            // require(usdc.transfer(msg.sender, token_amount));
             shipments[shipment_cid].action_status = ActionStatus.SUCCESS;
             success_shipment_list[shipments[shipment_cid].sender] ++;
             invoice_list[invoice_id] = shipment_cid;
